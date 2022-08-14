@@ -32,6 +32,12 @@ namespace GuiApp
                     services.AddSingleton<IEventAggregator, EventAggregator>();
                     // caliburn window manager
                     services.AddSingleton<IWindowManager, WindowManager>();
+
+                    // child vms
+                    services.AddSingleton<IChildViewModel, ChildOneViewModel>();
+                    services.AddSingleton<IChildViewModel, ChildTwoViewModel>();
+                    services.AddSingleton<IChildViewModel, ChildThreeViewModel>();
+
                     // calibrun root VM
                     services.AddSingleton<IShell, ShellViewModel>();
                     // calibrun Bootstrapper

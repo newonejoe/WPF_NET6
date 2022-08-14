@@ -3,10 +3,49 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cal="http://caliburnmicro.com"
         xmlns:local="clr-namespace:GuiApp.Views"
         mc:Ignorable="d"
-        Title="ShellView" Height="450" Width="800">
-    <Grid>
-        <Button Content="{Binding Title}"></Button>
+        Title="ShellView Mini Demo" Height="450" Width="800">
+    <Grid Background="#FEFEFE">
+        <!-- 布局 -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Label Content="Select View Models" Margin="2"></Label>
+            <Button 
+                Margin="2"
+                Width="150"
+                Content="ChildOneViewModel" 
+                cal:Message.Attach="[Event Click]=[Action ActivateVM(1)]">
+            </Button>
+            <Button 
+                Margin="2"
+                Width="150"
+                Content="ChildTwoViewModel" 
+                cal:Message.Attach="[Event Click]=[Action ActivateVM(2)]">
+            </Button>
+            <Button 
+                Margin="2"
+                Width="150"
+                Content="ChildThreeViewModel" 
+                cal:Message.Attach="[Event Click]=[Action ActivateVM(3)]">
+            </Button>
+        </StackPanel>
+        <!-- 用于显示在ShellViewModel中被激活的 子ViewModel -->
+        <!-- 在ShellViewModel中无需定义ActiveItem这个Property -->
+        <!-- ActiveItem 是Caliburn.Micro的Conductor在执行ActiveItem  -->
+        <!-- 或者 执行ActiveItemAsync后自动赋值  -->
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Child View:"></TextBlock>
+            <ContentControl x:Name="ActiveItem" Margin="2"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Margin="4">
+            <TextBlock Text="Info:"></TextBlock>
+            <TextBlock Background="Gray" x:Name="Info"></TextBlock>
+        </StackPanel>
     </Grid>
 </Window>
